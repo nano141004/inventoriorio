@@ -24,4 +24,24 @@
 
 ![Bagan](static/images/bagan_request_client.png)
 
+Client ingin masuk ke url web kita, sehingga browser melakukan HTTP request. Request tersebut kemudian akan diterima dan diproses oleh `urls.py`. Setelah request di proses dalam `urls.py`, kemudian akan dipanggil function yang sesuai yang ada dalam `views.py`.Akan dilakukan operasi dalam `views.py` seperti transaksi data dari/ke `models.py`. Kemudian setelah itu `views.py` akan mengembalikan respon template HTML yang sesuai kembali kepada client.
 
+## Mengapa venv dibutuhkan 
+
+Virtual environment(venv) adalah lingkungan terisolasi. Virtual environment berguna agar setiap proyek yang berbeda memiliki lingkungan terisolasi sehinga masing - masing proyek dapat memiliki dependensinya masing - masing.
+Kita dapat membuat aplikasi berbasis django tanpa menggunakan virtual environment, namun tentunya jika kita bekerja dalam beberapa proyek berbeda bisa saja terjadi konflik antar proyek tersebut yang disebabkan oleh dependensi yang berbeda.
+
+## MVC, MVT, dan MVVM
+
+- MVC (Model View Controller)
+    - Model: Mengurusi bagian logika, data, dan berhubungan dengan database
+    - View: Mengurusi UI, dengan menampilkan data dari model dan menerima pembaruan dari controller
+    - Controller: Perantara model dan view, mengatur aliran aplikasi dan sinkronisasi antara model dan view
+- MVT (Model View Template)
+    - Model: Mengurusi bagian logika, data, dan berhubungan dengan database; tidak berhubungan langsung dengan view
+    - View: Mengurusi UI, bergantung terhadap pembaruan dari controller 
+    - Template: Menjembatani antara model dan view, menerima data dari model dan melakukan pembaruan ke view
+- MVVM (Model View - ViewModel)
+    - Model: Mengurusi bagian logika, data, dan berhubungan dengan database
+    - View: Mengurusi UI, menampilkan data dari model
+    - ViewModel: Menjembatani antara model dan view, menyediakan dan memanipulasi data untuk ditampilkan
