@@ -22,6 +22,6 @@
 
 ## Bagan request client dan kaitan diantaranya
 
-![Bagan](../bagan_request_client.png)
+![Bagan](static/images/bagan_request_client.png)
 
 
