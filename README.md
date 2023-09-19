@@ -1,5 +1,8 @@
 ## [Link Aplikasi Inventoriorio](https://inventoriorio.adaptable.app/)
 
+<details> 
+<summary>*Tugas 2*</summary> 
+
 ## Step by step pengimplementasian
 
 - Membuat direktori(utama) baru bernama ``inventoriorio``, lalu membuat virtual environment didalamnya dan kemudian diaktifkan
@@ -45,3 +48,41 @@ Kita dapat membuat aplikasi berbasis django tanpa menggunakan virtual environmen
     - Model: Mengurusi bagian logika, data, dan berhubungan dengan database
     - View: Mengurusi UI, menampilkan data dari model
     - ViewModel: Menjembatani antara model dan view, menyediakan dan memanipulasi data untuk ditampilkan
+</details>
+
+<details> 
+<summary>*Tugas 3*</summary>
+
+## Apa perbedaan antara form POST dan form GET dalam Django?
+
+| POST | GET |
+| :-: | :-: | 
+| Nilai variabel tidak ditampilkan di URL | Nilai variabel ditampilkan di URL |
+| Dapat memodifikasi input user sebelum masuk ke database | Tidak bisa memodifikasi input user |
+| Lebih aman | Kurang aman |
+| Tidak dibatasi panjang string | Dibatasi panjang string sampai 2047 karakter |
+| Biasanya untuk input data melalui form | Biasanya untuk input data melalui link |
+| Digunakan untuk mengirim data-data penting seperti password | Digunakan untuk mengirim data-data tidak penting |
+
+## Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+
+
+
+## Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+
+## Step by step pengimplementasian
+
+## Screenshot pengaksesan kelima URL menggunakan Postman
+
+HTML:
+![html](static/images/html.png)
+XML:
+![xml](static/images/xml.png)
+JSON:
+![json](static/images/json.png)
+XML by id:
+![xml_by_id](static/images/xml_by_id.png)
+JSON by id:
+![json_by_id](static/images/json_by_id.png)
+
+</details>
