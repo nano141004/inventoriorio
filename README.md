@@ -1,7 +1,7 @@
 ## [Link Aplikasi Inventoriorio](https://inventoriorio.adaptable.app/)
 
 <details> 
-<summary>*Tugas 2*</summary> 
+<summary>Tugas 2</summary> 
 
 ## Step by step pengimplementasian
 
