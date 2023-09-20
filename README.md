@@ -51,7 +51,7 @@ Kita dapat membuat aplikasi berbasis django tanpa menggunakan virtual environmen
 </details>
 
 <details> 
-<summary>*Tugas 3*</summary>
+<summary>Tugas 3</summary>
 
 ## Apa perbedaan antara form POST dan form GET dalam Django?
 
@@ -66,11 +66,26 @@ Kita dapat membuat aplikasi berbasis django tanpa menggunakan virtual environmen
 
 ## Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
 
-
+HTML(Hypertext Markup Language) cenderung digunakan untuk mengatur tampilan dan struktur dari halaman web, sehingga HTML tidak terlalu cocok digunakan untuk mengirim data mentah. XML(eXtensible Markup Language) menggunakan struktur tag dalam setiap data, ini menyebabkan XML lebih kompleks dan sulit untuk dibuat dan dibaca oleh manusia. JSON(JavaScript Object Notation) menyimpan data dengan object(pasangan key - value), sehingga JSON lebih simpel, ringan, dan lebih mudah untuk dibuat dan dibaca.
 
 ## Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
 
+- Sederhana dan mudah dibaca.
+- Lebih ringan dibandingkan format lain, sehingga pertukaran data menjadi tidak terbebani dan lancar.
+- Mendungkung banyak bahasan pemrograman.
+- Struktur data yang fleksibel, mudah untuk dimodifikasi.
+- Keamanan yang lebih baik dibandingkan format lain.
+- Popularitasnya yang tinggi membuat banyak web modern menggunakannya, sehingga lebih mudah integrasi antar aplikasinya.
+
 ## Step by step pengimplementasian
+
+- Menambahkan folder `template` dalam direktori utama, dan diisi dengan `base.html` sebagai template dasar untuk halaman lainnya.
+- Membuat dan mengisi berkas `forms.py` pada direktori `main`, berfungsi agar dapat menginput data(object model) untuk aplikasi.
+- Menambahkan fungsi baru pada berkas `views.py` di direktori `main` dengan nama `create_item` untuk menyimpan data yang diinput/disubmit dalam forms.
+- Membuat dan mengisi berkas baru `create_item.html` pada direktori `main/templates` sebagai halaman/template dari fungsi `create_item` untuk menginput data.
+- Memodifikasi isi berkas `main.html` untuk menampilkan data item yang telah diinput, menampilkan jumlah item yang ada(telah diinput), dan menambahkan tombol `Add New Item` yang akan redirect ke halaman form.
+- Menambahkan fungsi - fungsi baru pada berkas `views.py` di direktori `main`, yaitu fungsi `show_xml` dan `show_json` yang masing - masing berfungsi untuk menampilkan data dalam bentuk `XML` dan `JSON` secara kesuluruhan. Selain itu ditambahkan juga fungsi `show_xml_by_id` dan `show_json_by_id` untuk menampilkan data dalam bentuk `XML` dan `JSON` secara spesifik tergantung id yang diberikan.
+- Melakukan routing URL dari fungsi - fungsi yang baru saja dibuat di atas dengan cara memodifikasi berkas `urls.py` di direktori `main`. Pada berkas `urls.py` diimport fungsi - fungsi tersebut, lalu ditambahkan semua path yang menuju fungsi - fungsi tersebut.
 
 ## Screenshot pengaksesan kelima URL menggunakan Postman
 
