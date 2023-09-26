@@ -12,6 +12,9 @@
         <th>Name</th>
         <th>Amount</th>
         <th>Description</th>
+        <th>Plus 1</th>
+        <th>Minus 1</th>
+        <th>Remove</th>
     </tr>
 
     {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
@@ -21,6 +24,21 @@
             <td>{{item.name}}</td>
             <td>{{item.amount}}</td>
             <td>{{item.description}}</td>
+            <td><a href="/plus/{{item.pk}}/">
+                <button>
+                    Plus 1
+                </button>
+            </a></td>
+            <td><a href="/minus/{{item.pk}}/">
+                <button>
+                    Minus 1
+                </button>
+            </a></td>
+            <td><a href="/remove/{{item.pk}}/">
+                <button>
+                    Remove
+                </button>
+            </a></td>
         </tr>
     {% endfor %}
 </table>
@@ -32,5 +50,11 @@
         Add New Item
     </button>
 </a>
+<a href="{% url 'main:logout' %}">
+    <button>
+        Logout
+    </button>
+</a>
+<h5>Sesi terakhir login: {{ last_login }}</h5>
 
 {% endblock content %}
