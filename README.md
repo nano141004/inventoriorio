@@ -101,3 +101,42 @@ JSON by id:
 ![json_by_id](static/images/json_by_id.png)
 
 </details>
+
+<details> 
+<summary>Tugas 4</summary>
+
+## Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
+
+Django UserCreationForm adalah import bawaan dalam library Django yang bertujuan untuk memudahkan pembuatan formulir pendaftaran user/pengguna dalam aplikasi web. Dengan formulir ini, kelebihannya yaitu kita dapat membuat formulir pendaftaran user tanpa menulis kode dari awal lagi, karena sudah disediakan field - field input yang biasa diperlukan dalam registrasi aplikasi dan juga terdapat validasi terhadap input yang diberikan sehingga dapat membuat keamanan akun pengguna terjamin. Namun ada juga kekurangan dari UserCreationForm yaitu seperti kurangnya pilihan untuk kustomisasi dari segi visual, keterbatasan untuk kustomisasi fitur yang telah ada secara default seperti validasi input, dan lain - lain.
+
+## Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+
+Autentikasi adalah proses verifikasi terhadap pengguna yang ingin masuk/mengakses aplikasi, sistem akan mengecek apakah pengguna yang ingin masuk ke dalam aplikasi adalah pengguna yang berhak/memiliki akses masuk. Contohnya saat melakukan proses login sistem akan memverifikasi pengguna misalnya berdasarkan input username dan password.
+Otorisasi sendiri adalah proses untuk mengatur akses pengguna yang telah berhasil di-autentikasi sebelumnya terhadap aplikasi, seperti akses untuk memodifikasi model, melakukan operasi pada aplikasi, dan sebagainya. 
+Kedua hal tersebut merupakan hal yang penting dalam aplikasi Django untuk menjaga keamanan aplikasi. Dengan adanya autentikasi  maka kita mengurangi resiko bagi sembarang orang khususnya yang berniat jahat untuk dapat masuk ke dalam aplikasi kita. Selain itu pengguna yang terautentikasi juga terbatasi aksesnya sesuai yang diizinkan/sesuai perannya dalam aplikasi sehingga tidak bisa sembarangan untuk memodifikasi data dari aplikasi.
+
+## Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
+
+
+
+## Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
+
+
+
+## Step by step pengimplementasian
+
+- Membuat fungsi `register` dalam berkas `views.py` di direktori `main` yang berfungsi untuk membuat form registrasi untuk membuat akun pengguna baru. Setelah itu membuat berkas baru bernama `register.html` di direktori `main/templates` yang memuat halaman untuk form registrasi tersebut.
+- Membuat fungsi `login_user` dalam berkas `views.py` di direktori `main` yang berfungsi untuk melakukan autentikasi pengguna yang ingin login. Setelah itu membuat berkas baru bernama `login.html` di direktori `main/templates` yang memuat halaman untuk login pengguna.
+- Membuat fungsi `logout_user` dalam berkas `views.py` di direktori `main` yang berfungsi untuk mekanisme saat pengguna melakukan logout dari aplikasi.
+- Melakukan routing URL dari semua fungsi yang baru saja dibuat di atas dengan cara memodifikasi berkas `urls.py` di direktori `main`. Pada berkas `urls.py` diimport fungsi - fungsi tersebut, lalu ditambahkan semua path yang menuju fungsi - fungsi tersebut.
+- Memodifikasi isi berkas `main.html` di direktori `main/templates` dengan menambahkan button untuk logout.
+- Melakukan restriksi terhadap fungsi `show_main` pada berkas `view.py` di direktori `main` agar halaman *main* hanya bisa diakses oleh pengguna yang telah ter-autentikasi.
+- Mencoba membuat 2 akun pengguna baru pada aplikasi dengan menggunakan localhost dan kemudian menambahkan 3 dummy data pada setiap akun tersebut.
+- Menambahkan fungsi untuk menambahkan *cookie* yang bernama `last_login` pada fungsi `login_user` dalam berkas `views.py` di direktori `main` untuk menampilkan `datetime` atau waktu terakhir kali pengguna login pada aplikasi. Dalam berkas yang sama, memodifikasi fungsi `show_main` dengan menambahkan kode `'last_login': request.COOKIES['last_login']` pada variabel `context`. Setelah itu memodifikasi fungsi `logout_user` untuk menghapus *cookie* `last_login` setelah pengguna logout. Terakhir, memodifikasi berkas `main.html` di direktori `main/templates` dengan menambahkan kode yang menunjukkan data `last_login`.
+- Menghubungkan model `Item` dengan pengguna dengan cara memodifikasi berkas `models.py` di direktori `main` dengan menambahkan `ForeignKey` yang bertujuan untuk membuat *relationship* antara satu `Item` dengan satu pengguna. Kemudian memodifikasi fungsi `create_item` pada berkas `views.py` di direktori `main` untuk mencegah Django langsung menyimpan objek yang dibuat ke dalam database. Setelah itu memodifikasi isi variabel `context` pada fungsi `show_main` dalam berkas `views.py` di direktori `main` yaitu mengubah *value* 'name' menjadi sesuai dengan username pengguna yang login. Terakhir adalah melakukan migrasi model.
+++ Bonus
+- Membuat fungsi - fungsi baru dalam berkas `views.py` di direktori `main`, yaitu fungsi `plus` yang berfungsi untuk menambahkan `amount` sebanyak 1 dari item yg dipilih, fungsi `minus` yang berfungsi untuk mengurangi `amount` sebanyak 1 dari item yg dipilih(jika setelah dikurang 1 `amount` menjadi 0, maka item akan di hapus), dan fungsi `remove` yang berfungsi untuk menghapus item yang dipilih. 
+- Melakukan routing URL semua fungsi tersebut pada berkas `urls.py` di direktori `main`.
+- Memodifikasi berkas `main.html` di direktori `main/templates` dengan menambahkan button `plus 1` (untuk fungsi `plus`), button `minus 1` (untuk fungsi `minus`), dan button `remove` (untuk fungsi `remove`) di sebelah setiap item yang ada dalam table.
+
+</details>
