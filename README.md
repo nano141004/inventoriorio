@@ -117,11 +117,11 @@ Kedua hal tersebut merupakan hal yang penting dalam aplikasi Django untuk menjag
 
 ## Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
 
-
+Cookies adalah data dengan ukuran kecil yang disimpan pada komputer browser web yang digunakan saat mereka mengunjungi situs web. Cookies digunakan untuk menyimpan informasi yang dapat digunakan oleh server web untuk mengenali pengguna yang telah mengunjungi situs sebelumnya atau untuk menyimpan data sesi pengguna. Cookies menyimpan session ID dalam komputer pengguna, session ID ini yang kemudian dipetakan ke struktur data di sisi server web. Saat pengguna melakukan request maka browser web akan mengirimkan session ID ke server dan kemudian server akan mencari informasi berdasarkan session ID yang diterima lalu akan mengembalikan data yang diminta.
 
 ## Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
 
-
+Secara default penggunaan cookies aman untuk pengembangan web, ini karena cookies tidak akan menyebabkan pengaruh kepada device kita seperti terkena virus atau malware. Namun karena cookies sendiri menyimpan id unik dari pengguna, make dengan cookies tersebut seseorang dapat melacak jejak browsing dari pengguna dengan cookies(id) tersebut. Hal ini dapat disalahgunakan oleh orang - orang yang tidak bertanggung jawab. Oleh karena itu kita harus menghindari mengakses situs - situs yang mencurigakan, biasanya situs - situs ilegal dimana banyak *third party* cookies yang lebih rentan untuk dipersalahgunakan oleh seseorang. 
 
 ## Step by step pengimplementasian
 
@@ -134,7 +134,8 @@ Kedua hal tersebut merupakan hal yang penting dalam aplikasi Django untuk menjag
 - Mencoba membuat 2 akun pengguna baru pada aplikasi dengan menggunakan localhost dan kemudian menambahkan 3 dummy data pada setiap akun tersebut.
 - Menambahkan fungsi untuk menambahkan *cookie* yang bernama `last_login` pada fungsi `login_user` dalam berkas `views.py` di direktori `main` untuk menampilkan `datetime` atau waktu terakhir kali pengguna login pada aplikasi. Dalam berkas yang sama, memodifikasi fungsi `show_main` dengan menambahkan kode `'last_login': request.COOKIES['last_login']` pada variabel `context`. Setelah itu memodifikasi fungsi `logout_user` untuk menghapus *cookie* `last_login` setelah pengguna logout. Terakhir, memodifikasi berkas `main.html` di direktori `main/templates` dengan menambahkan kode yang menunjukkan data `last_login`.
 - Menghubungkan model `Item` dengan pengguna dengan cara memodifikasi berkas `models.py` di direktori `main` dengan menambahkan `ForeignKey` yang bertujuan untuk membuat *relationship* antara satu `Item` dengan satu pengguna. Kemudian memodifikasi fungsi `create_item` pada berkas `views.py` di direktori `main` untuk mencegah Django langsung menyimpan objek yang dibuat ke dalam database. Setelah itu memodifikasi isi variabel `context` pada fungsi `show_main` dalam berkas `views.py` di direktori `main` yaitu mengubah *value* 'name' menjadi sesuai dengan username pengguna yang login. Terakhir adalah melakukan migrasi model.
-++ Bonus
+
+### Bonus
 - Membuat fungsi - fungsi baru dalam berkas `views.py` di direktori `main`, yaitu fungsi `plus` yang berfungsi untuk menambahkan `amount` sebanyak 1 dari item yg dipilih, fungsi `minus` yang berfungsi untuk mengurangi `amount` sebanyak 1 dari item yg dipilih(jika setelah dikurang 1 `amount` menjadi 0, maka item akan di hapus), dan fungsi `remove` yang berfungsi untuk menghapus item yang dipilih. 
 - Melakukan routing URL semua fungsi tersebut pada berkas `urls.py` di direktori `main`.
 - Memodifikasi berkas `main.html` di direktori `main/templates` dengan menambahkan button `plus 1` (untuk fungsi `plus`), button `minus 1` (untuk fungsi `minus`), dan button `remove` (untuk fungsi `remove`) di sebelah setiap item yang ada dalam table.
