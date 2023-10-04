@@ -140,3 +140,46 @@ Secara default penggunaan cookies aman untuk pengembangan web, ini karena cookie
 - Memodifikasi berkas `main.html` di direktori `main/templates` dengan menambahkan button `plus 1` (untuk fungsi `plus`), button `minus 1` (untuk fungsi `minus`), dan button `remove` (untuk fungsi `remove`) di sebelah setiap item yang ada dalam table.
 
 </details>
+
+<details> 
+<summary>Tugas 5</summary> 
+
+## Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+
+- Element selector : Untuk mengubah properti pada semua element dengan tag yang sama, berguna untuk mengubah properti pada element dengan tag yang ditentukan pada satu proyek.
+- ID selector : Untuk mengubah properti pada element dengan dengan id yang unik, berguna untuk mengubah properti pada element secara spesifik tergantung id yang ditentukan.
+- Class selector : Untuk mengelompokkan beberapa element dengan suatu karakteristik yang sama, berguna untuk mengubah properti element secara kesuluruhan dengan class yang ditentukan.
+
+## Jelaskan HTML5 Tag yang kamu ketahui.
+
+- `<nav>` : untuk menandai bagian navigasi dari halaman web
+- `<header>` : menandai bagian kepala dari dari halaman web
+- `<body>` : menandai badan dari halaman web
+- `<dev>`: menandai suatu bagian dari halaman web
+- `<footer>` : menandai bagian kaki/bawah dari halaman web
+- `<time>` : menandari waktu 
+
+## Jelaskan perbedaan antara margin dan padding.
+
+- Margin : adalah ruang di luar batas elemen, biasanya transparan, membatasi ruang antar elemen
+- Paddding : adalah ruang di dalam batas elemen, menandai ruang antara isi konten dengan batas ruang element, biasanya memiliki background warna atau gambar
+
+## Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+
+| Tailwind | Bootstrap |
+| :-: | :-: | 
+| Ukuran file yang lebih kecil | Ukuran file lebih besar karena termasuk komponen yang telah didefinisikan |
+| Fleksibilitas dan adaptasi yang tinggi | Tampilan yang lebih konsisten pada seluruh proyek |
+| Lebih sulit karena harus memahami banyak kelas yang ada | Lebih mudah karena sudah disediakan banyak komponen |
+
+Kita menggunakan bootstrap jika memerlukan pengembangan yang cepat, konsistensi keseluruhan proyek, dan tidak memerlukan kustomisasi yang banyak.
+Sebaliknya, kita menggunakan tailwind saat memerlukan kustomisasi yang banyak dan lebih fleksibel.
+
+## Step by step pengimplementasian
+
+- Menambahkan bootstrap pada proyek kita.
+- Menambahkan navigation bar pada halaman `main`, yang berisi username dari pengguna yang login, lalu tombol logout.
+- Memodifikasi halaman `login`, `register`, dan `create_item`, dengan memosisikan content ke tengah, lalu button - button yang ada diganti menjadi *layout button*. 
+- Memodifikasi halaman `main`, mengubah `background color`, mengubah button - button yang ada menjadi *layout button*, lalu juga mengganti warna dari item terakhir yang ada pada aplikasi menjadi warna merah.
+
+</details>
