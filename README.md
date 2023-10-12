@@ -1,4 +1,4 @@
-## [Link Aplikasi Inventoriorio](https://inventoriorio.adaptable.app/)
+## [Link Aplikasi Inventoriorio](http://mariano-gerardus-tugas.pbp.cs.ui.ac.id/) - 
 
 <details> 
 <summary>Tugas 2</summary> 
