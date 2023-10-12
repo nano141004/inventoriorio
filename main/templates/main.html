@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
     <div class="container-fluid">
         <span class="navbar-brand mb-0 h1">{{name}}</span>
@@ -8,8 +9,14 @@
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <span class="navbar-text">
+            <h7>Sesi terakhir login: {{ last_login }}</h7>
+        </span>
+
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <!-- <form class="d-flex ms-auto order-5"> -->
+            <ul class="navbar-nav" style="margin-left: auto;">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" style="background-color: #66697c;" href="{% url 'main:logout' %}">Logout</a>
                 </li>
@@ -18,73 +25,138 @@
     </div>
 </nav>
 
-<head> 
+<!-- <head> 
     <style>
         body {
-            background-color: #dcdcdc;
+            /* background-color: #dcdcdc; */
         }
         tr:last-child > td {
             color: rgb(255, 7, 7);
         } 
     </style>
-</head>
+</head> -->
 
-<body>
-    <h1>Inventoriorio</h1>
+<!-- <body> -->
+<h1>Inventoriorio</h1>
 
-    <h5>Name: {{ name }}</h5>
-    <h5>Class: {{ class }}</h5>
+<h5>Name: {{ name }}</h5>
+<h5>Class: {{ class }}</h5>
 
-    <h4>Kamu menyimpan {{items.count}} item pada aplikasi ini</h4>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Description</th>
-            <!-- <th>Plus 1</th>
-            <th>Minus 1</th>
-            <th>Remove</th> -->
-        </tr>
+<h4>Kamu menyimpan {{amount_items}} item pada aplikasi ini</h4>
 
-        {% comment %} Berikut cara memperlihatkan data item di bawah baris ini {% endcomment %}
+<div id="item_table" class="row sm-4"></div>
 
-        {% for item in items %}
-            <tr>
-                <td>{{item.name}}</td>
-                <td>{{item.amount}}</td>
-                <td>{{item.description}}</td>
-                <td><a href="/plus/{{item.pk}}/">
-                    <button class="btn btn-outline-info" style=" width: 75px; text-align: center;">
-                        Plus 1
-                    </button>
-                </a></td>
-                <td><a href="/minus/{{item.pk}}/">
-                    <button class="btn btn-outline-dark" style=" width: 90px; text-align: center;">
-                        Minus 1
-                    </button>
-                </a></td>
-                <td><a href="/remove/{{item.pk}}/">
-                    <button class="btn btn-outline-danger" style=" width: 80px; text-align: center;">
-                        Remove
-                    </button>
-                </a></td>
-            </tr>
-        {% endfor %}
-    </table>
+<!-- <a href="{% url 'main:create_item' %}">
+    <button>
+        Add New Item
+    </button>
+</a> -->
 
-    <br />
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Item by AJAX</button>
 
-    <a href="{% url 'main:create_item' %}">
-        <button class="btn btn-outline-primary" style=" width: 135px; text-align: center;">
-            Add New Item
-        </button>
-    </a>
-    <a href="{% url 'main:logout' %}">
-        <button class="btn btn-outline-secondary" style=" width: 75px; text-align: center;">
-            Logout
-        </button>
-    </a>
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-</body>
+<!-- </body> -->
+
+<script>
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json())
+    }
+
+    async function refreshItems() {
+        document.getElementById("item_table").innerHTML = ""
+        const items = await getItems()
+        let htmlString = ""
+        items.forEach((item) => {
+            htmlString += `
+            <div class="card mt-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${item.fields.name}</h5>
+                    <p class="card-text">${item.fields.description}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Amount: ${item.fields.amount}</li>
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="btn btn-outline-info" onclick="plusItem(${item.pk})">+</a>
+                    <a href="#" class="btn btn-outline-dark" onclick="minusItem(${item.pk})">-</a>
+                    <a href="#" class="btn btn-outline-danger" onclick="removeItem(${item.pk})">remove</a>
+                </div>
+            </div>`
+        })
+        document.getElementById("item_table").innerHTML = htmlString
+    }
+
+    refreshItems()
+
+    function addItem() {
+        fetch("{% url 'main:create_item' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshItems)
+
+        document.getElementById("form").reset()
+        return false
+    }
+    document.getElementById("button_add").onclick = addItem
+
+    function plusItem(pk) {
+        const data = new FormData()
+        data.append("id", pk)
+        fetch("{% url 'main:plus_ajax' %}", {
+            method: "POST",
+            body: data
+        }).then(refreshItems)
+    }
+
+    function minusItem(pk) {
+        const data = new FormData()
+        data.append("id", pk)
+        fetch("{% url 'main:minus_ajax' %}", {
+            method: "POST",
+            body: data
+        }).then(refreshItems)
+    }
+
+    function removeItem(pk) {
+        const data = new FormData()
+        data.append("id", pk)
+        fetch("{% url 'main:remove_ajax' %}", {
+            method: "POST",
+            body: data
+        }).then(refreshItems)
+    }
+
+</script>
+
 {% endblock content %}

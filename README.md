@@ -25,7 +25,7 @@
 
 ## Bagan request client dan kaitan diantaranya
 
-![Bagan](static/images/bagan_request_client.png)
+![Bagan](images/bagan_request_client.png)
 
 Client ingin masuk ke url web kita, sehingga browser melakukan HTTP request. Request tersebut kemudian akan diterima dan diproses oleh `urls.py`. Setelah request di proses dalam `urls.py`, kemudian akan dipanggil function yang sesuai yang ada dalam `views.py`.Akan dilakukan operasi dalam `views.py` seperti transaksi data dari/ke `models.py`. Kemudian setelah itu `views.py` akan mengembalikan respon template HTML yang sesuai kembali kepada client.
 
@@ -90,15 +90,15 @@ HTML(Hypertext Markup Language) cenderung digunakan untuk mengatur tampilan dan 
 ## Screenshot pengaksesan kelima URL menggunakan Postman
 
 HTML:
-![html](static/images/html.png)
+![html](images/html.png)
 XML:
-![xml](static/images/xml.png)
+![xml](images/xml.png)
 JSON:
-![json](static/images/json.png)
+![json](images/json.png)
 XML by id:
-![xml_by_id](static/images/xml_by_id.png)
+![xml_by_id](images/xml_by_id.png)
 JSON by id:
-![json_by_id](static/images/json_by_id.png)
+![json_by_id](images/json_by_id.png)
 
 </details>
 
@@ -181,5 +181,44 @@ Sebaliknya, kita menggunakan tailwind saat memerlukan kustomisasi yang banyak da
 - Menambahkan navigation bar pada halaman `main`, yang berisi username dari pengguna yang login, lalu tombol logout.
 - Memodifikasi halaman `login`, `register`, dan `create_item`, dengan memosisikan content ke tengah, lalu button - button yang ada diganti menjadi *layout button*. 
 - Memodifikasi halaman `main`, mengubah `background color`, mengubah button - button yang ada menjadi *layout button*, lalu juga mengganti warna dari item terakhir yang ada pada aplikasi menjadi warna merah.
+
+</details>
+
+<details> 
+<summary>Tugas 6</summary>
+
+## Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+
+Dalam *synchronous* programming operasi/tugas dijalankan satu per satu sesuai urutannya, berarti hanya satu operasi yang berjalan dalam satu waktu dan operasi berikutnya akan diproses setelah operasi saat ini selesai dijalankan. Sebaliknya dalam *asynchronous* programming operasi/tugas dapat berjalan secara independen satu sama lain, berarti beberapa operasi dapat berjalan dalam satu waktu secara bersama. 
+
+## Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+
+Paradigma event-driven programming melakukan eksekusi program yang dipicu oleh kejadian(events) yang terjadi, seperti input pengguna, pengambilan data, atau event lainnya. Dalam tugas ini contoh penerapannya ada pada button `Add Item by AJAX`, terdapat event listener *onclick* pada button tersebut yang akan memanggil fungsi `addItem()` saat button ditekan.
+
+## Jelaskan penerapan asynchronous programming pada AJAX.
+
+Penerapan *aysnchronous* programming pada AJAX seperti penggunaan **fetch API** yang mana membuat koneksi ke server secara asinkron dan mengirim serta menerima data tanpa memuat ulang halaman. Selain itu terdapat penggunaan fungsi **async** digunakan untuk menandai fungsi sebagai fungsi yang dapat mengembalikan nilai secara asinkronus dan juga fungsi **await** yang digunakan untuk menunggu hasil dari fungsi **async**.
+
+## Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+
+| Fetch API | jQuery |
+| :-: | :-: | 
+| Sintaks yang lebih bersih dan terbaca | Konfigurasi lebih banyak |
+| Lebih ringan | Lebih besar karena memiliki banyak fitur selain AJAX |
+| Tidak didukung di Internet Explorer | Mendukung sebagian besar browser, termasuk IE |
+| Menggunakan Promises - lebih sederhana | Menggunakan callbacks - lebih kompleks |
+| Fokus pada AJAX, tanpa menyertakan fitur-fitur lain | Menyertakan banyak fungsi utilitas dan fitur lainnya di luar AJAX |
+
+Jika hanya membutuhkan AJAX dalam proyek kita maka lebih baik menggunakan Fetch API, namun jika membutuhkan utilitas yang lebih luas maka lebih baik menggunakan library jQuery. Fetch API lebih mudah dan simpel untuk digunakan juga, dan dalam PBP kita baru menerapkan AJAX sehingga lebih baik menggunakan Fetch API.
+
+## Step by step pengimplementasian
+
+- Membuat fungsi - fungsi baru pada berkas `views.py`, yaitu fungsi `get_item_json` dan fungsi `create_ajax`. 
+- Memodifikasi berkas `main.html`, menghapus table untuk penampilan item yang lama. Kemudian membuat block *script* dan diisi fungsi - fungsi, yaitu fungsi `getItems` dan fungsi `refreshItems` yang menggantikan table yang lama agar dapat me-refresh data/item secara *asynchronous*. Penggunaan table untuk menampilkan item yang ada juga diganti menjadi *card*.
+- Dalam berkas `main.html` dibuat modal untuk form dalam menambahkan item baru ke dalam aplikasi lalu ada juga button `Add Item by AJAX` untuk menampilkan modal tersebut. Kemudian menambahkan fungsi baru yaitu `addItems` dalam block *script* untuk menambahkan item yang baru diinput ke dalam aplikasi.
+- Membuat fungsi - fungsi baru pada berkas `views.py`, yaitu fungsi `plus_ajax`, `minus_ajax`, dan `remove_ajax` untuk menggantikan fungsi yang sebelumnya menjadi menggunakan AJAX.
+- Menambahkan fungsi - fungsi baru lagi ke dalam block *script* pada berkas `main.html`, yaitu fungsi `plusItem`, `minusItem`, dan `removeItem`. Fungsi tersebut dipanggil saat button '+', '-', dan 'remove' ditekan agar dapat melakukan "edit" terhadap item dalam *cards* secara *asynchronous*. 
+- Melakukan routing pada berkas `urls.py` untuk semua fungsi - fungsi yang baru dibuat pada berkas `views.py`.
+- Menambahkan path static dalam berkas `settings.py`. Lalu melakukan command `collectstatic`
 
 </details>
